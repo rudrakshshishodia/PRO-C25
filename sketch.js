@@ -4,11 +4,12 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-var paperobj,groundobj,dustbinobj,dustbin1obj,dustbin2obj,paperimg;
+var paperobj,groundobj,dustbinobj,dustbin1obj,dustbin2obj,paperimg,dustbinimg,dustbinagainobg;
 
 function preload()
 {
 	paperimg=loadImage("paper.png");
+	dustbinimg=loadImage("dustbingreen.png");
 }
 
 function setup() {
@@ -19,11 +20,10 @@ function setup() {
 	world = engine.world;
 
 	//Create the Bodies Here.
-	paperobj=new Paper(200,450,40);
+	paperobj=new Paper(300,450,70);
 	groundobj=new Ground(width/2,690,width,20);
-	dustbinobj=new Dustbin(1040,562,30,170);
-	dustbin1obj=new Dustbin(1170,665,250,30);
-	dustbin2obj=new Dustbin(1300,562,30,170);
+	dustbinobj=new Dustbin(1040,520,30,170);
+	
 
 	Engine.run(engine);
   
@@ -36,10 +36,11 @@ function draw() {
   
   
   
+  
+  paperobj.display();
   groundobj.display();
   dustbinobj.display();
-  dustbin1obj.display();
-  dustbin2obj.display();
+  
 
   drawSprites();
  
@@ -49,7 +50,7 @@ function draw() {
 function keyPressed(){
 	if (keyCode === UP_ARROW) {
 
-		Matter.Body.applyForce(paperobj.body,paperobj.body.position,{x:85,y:-85});
+		Matter.Body.applyForce(paperobj.body,paperobj.body.position,{x:170,y:-350});
 		
 	}
    }
